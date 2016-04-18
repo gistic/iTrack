@@ -10,6 +10,13 @@
       html, body, #map {
         height: 100%; width: 100%; margin: 0; padding: 0; 
       }
+
+      #controls {
+        position: absolute;
+        width: 100%;
+        left: 10px;
+        top: 0px;
+      }
     </style>
 
     <script src="js/pathfinding-browser.js"></script>
@@ -17,6 +24,7 @@
     <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
     <script src="https://js.arcgis.com/3.15/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="routing_with_path_finding_js/walls_matrix.json"></script>
     
     
 
@@ -24,7 +32,6 @@
         Parse.initialize("pey8pjhhotyDIusYHgSEF6SUI84ugMPVe6rqF2Ah", "I8CbFbjMrKNKKauFicygVWXbe0V1V7tixOqzQpcX");
         var map
         var cells = [];
-        var cellsMatrix=[];
         var cloneMatrix=[];
         var step = 0.25;
         var sp = {
@@ -48,7 +55,7 @@
         function reColorGrid(){
             $(cells).each(function (y, row){
                 $(row).each(function(x, cell){
-                    v = v = cellsMatrix[y][x]
+                    v = v = wallsMatrix[y][x]
                     cell.setSymbol(v == 0 ? walkableSymbol : blockedSymbol)
                 })
             })
@@ -151,8 +158,7 @@
                             row.push(cell)
                         }
                         cells.push(row);
-                        cellsMatrix.push(new Array(row.length).fill(0))
-                        cloneMatrix = cellsMatrix.slice(0);
+                        reColorGrid()
                     }
 
 
@@ -164,9 +170,9 @@
                             return 
 
                         lastCell = cell
-                        v = cellsMatrix[cell.y][cell.x]
+                        v = wallsMatrix[cell.y][cell.x]
                         v = +!v;
-                        cellsMatrix[cell.y][cell.x] = v
+                        wallsMatrix[cell.y][cell.x] = v
                         symbol = v == 0 ? walkableSymbol : blockedSymbol
                         cell.setSymbol(symbol);
                         evt.Handled = true;
@@ -177,16 +183,11 @@
                     // map.addLayer(gridLayer)
 
                     // Load walls matrix
-                    $.getJSON("routing_with_path_finding_js/wall_matrix.json", function (data){
-                        cellsMatrix = data;
-                        reColorGrid();
-                        start();
-                    })
                 }
                 drawGrid();
 
                 start = function (){
-                    var g = new PF.Grid(cellsMatrix[0].length, cellsMatrix.length,cellsMatrix);
+                    var g = new PF.Grid(wallsMatrix[0].length, wallsMatrix.length,wallsMatrix);
                     var finder = new PF.BreadthFirstFinder({
                         allowDiagonal: true,
                         dontCrossCorners: true
@@ -231,9 +232,9 @@
                                 path.forEach(function(index){
                                     cells[index[1]][index[0]].setSymbol(pathSymbol)
                                 })
-                                //smoothPath = PF.Util.smoothenPath(g.clone(), path);
+                                smoothPath = PF.Util.smoothenPath(g.clone(), path);
                                 points = [new Point(src.get('X'), src.get('Y'), new SpatialReference({ wkid : 32637}))];
-                                path.forEach(function(index){
+                                smoothPath.forEach(function(index){
                                     points.push(cellToPoint(index))
                                 })
                                 points[points.length-1] = [new Point(des.get('X'), des.get('Y'), new SpatialReference({ wkid : 32637}))];
@@ -246,12 +247,19 @@
                         }
                     })
                 };
+                start()
             });
     </script>
   </head>
   <body>
     <div id="map">
     </div>
+    <div id="controls">
+        <input type='button' value='Show Grid' onclick="map.addLayer(gridLayer)" />
+        <input type='button' value='Hide Grid' onclick="map.removeLayer(gridLayer)" />
+        <input type='button' value='Remove Path Cells' onclick="reColorGrid()" />
+    </div>
+
   </body>
 </html>
 
