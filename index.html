@@ -197,12 +197,13 @@
                     var query = new Parse.Query(Positions);
                     //query.equalTo("installation_id", installation_ids[currentId])
                     query.containedIn("type", ["point", "point-same"])
-                    query.ascending("timeStamp");
+                    query.descending("timeStamp");
                     query._limit = 1000;
                     query.find({
                         success: function(results) {
                             console.log(`results:${results.length}`);
-                            
+                            linesLayer.clear()
+                            map.addLayer(linesLayer);
                             
                             // positions = new GraphicsLayer();
                             // marker = new PictureMarkerSymbol();
@@ -212,37 +213,42 @@
                             //     positions.add(new Graphic(new Point(pnt.get('X'), pnt.get('Y')), marker));
                             // }
                             // map.addLayer(positions)
-                            linesLayer.clear()
-                            map.addLayer(linesLayer);
-                            for (counter = 1; counter<results.length; counter++){
-                                console.log(counter)
-                                src = results[counter-1]
-                                des = results[counter]
+
+
+
+                            drawPath = function (src, des){
                                 srcCell = pointToCell(new Point(src.get('X'), src.get('Y')));
                                 desCell = pointToCell(new Point(des.get('X'), des.get('Y')));
 
-                                if (srcCell == desCell)
-                                    continue
-
-                                path = finder.findPath(srcCell.x, srcCell.y, desCell.x, desCell.y, g.clone());
-                                
-                                if (path.length <= 0)
-                                    continue
-
-                                path.forEach(function(index){
-                                    cells[index[1]][index[0]].setSymbol(pathSymbol)
-                                })
-                                smoothPath = PF.Util.smoothenPath(g.clone(), path);
-                                points = [new Point(src.get('X'), src.get('Y'), new SpatialReference({ wkid : 32637}))];
-                                smoothPath.forEach(function(index){
-                                    points.push(cellToPoint(index))
-                                })
-                                points[points.length-1] = [new Point(des.get('X'), des.get('Y'), new SpatialReference({ wkid : 32637}))];
-                                polyline = new Polyline()
-                                polyline.addPath(points);
-                                graphic = new Graphic(polyline, lineSymbol)
-                                linesLayer.add(graphic);
-                                
+                                if (srcCell != desCell){
+                                    path = finder.findPath(srcCell.x, srcCell.y, desCell.x, desCell.y, g.clone());
+                                    if (path.length > 0){
+                                        path.forEach(function(index){
+                                            cells[index[1]][index[0]].setSymbol(pathSymbol)
+                                        })
+                                        smoothPath = PF.Util.smoothenPath(g.clone(), path);
+                                        points = [new Point(src.get('X'), src.get('Y'), new SpatialReference({ wkid : 32637}))];
+                                        smoothPath.forEach(function(index){
+                                            points.push(cellToPoint(index))
+                                        })
+                                        points[points.length-1] = [new Point(des.get('X'), des.get('Y'), new SpatialReference({ wkid : 32637}))];
+                                        polyline = new Polyline()
+                                        polyline.addPath(points);
+                                        graphic = new Graphic(polyline, lineSymbol)
+                                        linesLayer.add(graphic);
+                                    }
+                                }
+                                src = des;
+                                des = results.pop()
+                                if (des)
+                                    setTimeout(function (){
+                                        drawPath(src, des);
+                                    }, 20)
+                            }
+                            if (results.length >= 2){
+                                src = results.pop()
+                                des = results.pop()
+                                drawPath(src, des)
                             }
                         }
                     })
