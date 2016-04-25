@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
+    
+    <style>
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+
+      #controls {
+        position: absolute;
+        width: 100%;
+        left: 10px;
+        top: 0px;
+      }
+    </style>
+
+    <script src="../js/pathfinding-browser.js"></script>
+    <script src="http://www.parsecdn.com/js/parse-1.6.14.min.js"></script>
+    <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+    <script src="https://js.arcgis.com/3.15/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="walls_matrix.json"></script>
+    
+    
+
+    <script>
+        Parse.initialize("pey8pjhhotyDIusYHgSEF6SUI84ugMPVe6rqF2Ah", "I8CbFbjMrKNKKauFicygVWXbe0V1V7tixOqzQpcX");
+        var map
+        var cells = [];
+        var cloneMatrix=[];
+        var step = 0.25;
+        var sp = {
+                XMin: 598841.335780058,
+                YMin: 2358791.936091149,
+                XMax: 598960.7394390758,
+                YMax: 2358880.30064046
+            }
+        var start;
+        var walkableSymbol;
+        var blockedSymbol;
+        var pathSymbol;
+        var lineSymbol;
+        var gridLayer;
+        var linesLayer;
+
+        // Esri API
+        var Map, Tiled, Point, SpatialReference, PictureMarkerSymbol, Graphic, GraphicsLayer, Circle, SimpleFillSymbol, Color, CartographicLineSymbol, SimpleLineSymbol, Polyline, Polygon, FeatureLayer, FeatureSet, HeatmapRenderer, Event;
+
+
+        function reColorGrid(){
+            $(cells).each(function (y, row){
+                $(row).each(function(x, cell){
+                    v = v = wallsMatrix[y][x]
+                    cell.setSymbol(v == 0 ? walkableSymbol : blockedSymbol)
+                })
+            })
+        }
+
+        function pointToCell(point){
+            x = Math.floor((point.x - sp.XMin)/step)
+            y = Math.floor((point.y - sp.YMin)/step)
+            return cells[y][x]
+        }
+
+        function cellToPoint(index){
+            x = index[0] * step + step/2 + sp.XMin
+            y = index[1] * step + step/2 + sp.YMin
+            return new Point(x,y, new SpatialReference({ wkid : 32637}));
+        }  
+
+                
+        require(["esri/map", 
+                "esri/layers/ArcGISTiledMapServiceLayer", 
+                "esri/geometry/Point",
+                "esri/SpatialReference",
+                "esri/symbols/PictureMarkerSymbol",
+                "esri/graphic", 
+                "esri/layers/GraphicsLayer",
+                "esri/geometry/Circle",
+                "esri/symbols/SimpleFillSymbol",
+                "esri/Color",
+                "esri/symbols/CartographicLineSymbol",
+                "esri/symbols/SimpleLineSymbol",
+                "esri/geometry/Polyline",
+                "esri/geometry/Polygon",
+                "esri/layers/FeatureLayer",
+                "esri/tasks/FeatureSet", 
+                "esri/renderers/HeatmapRenderer",
+                "dojo/_base/event",
+                
+                "dojo/domReady!"],
+            function(Map, Tiled, point, spatialReference, pictureMarkerSymbol, graphic, graphicsLayer, circle, simpleFillSymbol, color, cartographicLineSymbol, simpleLineSymbol, polyline, polygon, featureLayer, featureSet, heatmapRenderer, event) {
+                
+                Point = point;
+                SpatialReference =  spatialReference;
+                PictureMarkerSymbol = pictureMarkerSymbol
+                Graphic = graphic;
+                GraphicsLayer = graphicsLayer
+                Circle = circle
+                SimpleFillSymbol = simpleFillSymbol
+                Color = color
+                CartographicLineSymbol = cartographicLineSymbol
+                SimpleLineSymbol = simpleLineSymbol
+                Polyline = polyline;
+                Polygon = polygon;
+                FeatureLayer = featureLayer;
+                FeatureSet = featureSet;
+                HeatmapRenderer = heatmapRenderer;
+                Event = event;
+
+                map = new Map("map");
+                var tiled = new Tiled("https://tiles1.arcgis.com/tiles/W83WxNh9tBPYYG7b/arcgis/rest/services/makani/MapServer");
+                map.addLayer(tiled);
+                map.disableMapNavigation();
+                gridLayer = new GraphicsLayer();
+                linesLayer = new GraphicsLayer();
+
+                
+                lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                            new Color([255,0,0, 0.25]), 0.6);
+
+                walkableSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+                            new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                            new Color([255,0,0, 0.25]), 0.5),new Color([255,255,0,0.25])
+                          );
+                blockedSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, 
+                        new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                        new Color([98,194,204]), 2), new Color([98,194,204,0.5])
+                    );
+
+                pathSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+                        new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                        new Color([255,0,0, 0.25]), 0.5),new Color([255,0,255,0.25])
+                      );
+
+                function drawGrid(){
+                    cells = [];
+                    for (y = sp.YMin; y<=sp.YMax; y+=step ){
+                        row = []
+                        for (x = sp.XMin; x<=sp.XMax; x+=step ){
+                            polygon = new Polygon([
+                                [x, y], 
+                                [x, y+step], 
+                                [x+step, y+step], 
+                                [x+step, y], 
+                                [x,y]
+                            ]);
+
+                            var cell = new Graphic(polygon, walkableSymbol);
+                            cell.x = row.length;
+                            cell.y = cells.length;
+                            gridLayer.add(cell);
+                            row.push(cell)
+                        }
+                        cells.push(row);
+                        reColorGrid()
+                    }
+
+
+                    lastCell = null;
+                    toggle = function(evt){
+                        Event.stop(evt);
+                        cell = pointToCell(evt.mapPoint)
+                        if (lastCell && lastCell == cell && evt.type=="mousemove")
+                            return 
+
+                        lastCell = cell
+                        v = wallsMatrix[cell.y][cell.x]
+                        v = +!v;
+                        wallsMatrix[cell.y][cell.x] = v
+                        symbol = v == 0 ? walkableSymbol : blockedSymbol
+                        cell.setSymbol(symbol);
+                        evt.Handled = true;
+                        evt.preventDefault();
+                    }
+                    gridLayer.on('mouse-drag', toggle)
+                    gridLayer.on('click', toggle)
+                    // map.addLayer(gridLayer)
+
+                    // Load walls matrix
+                }
+                drawGrid();
+
+                start = function (){
+                    var g = new PF.Grid(wallsMatrix[0].length, wallsMatrix.length,wallsMatrix);
+                    var finder = new PF.BreadthFirstFinder({
+                        allowDiagonal: true,
+                        dontCrossCorners: true
+                    });
+
+                    var Positions = Parse.Object.extend("PositionsTrajectories");
+                    var query = new Parse.Query(Positions);
+                    //query.equalTo("installation_id", installation_ids[currentId])
+                    query.containedIn("type", ["point", "point-same"])
+                    query.descending("timeStamp");
+                    query._limit = 1000;
+                    query.find({
+                        success: function(results) {
+                            console.log(`results:${results.length}`);
+                            linesLayer.clear()
+                            map.addLayer(linesLayer);
+                            
+                            // positions = new GraphicsLayer();
+                            // marker = new PictureMarkerSymbol();
+                            // marker.setUrl("images/marker.png");
+                            // for (counter = 0; counter<results.length; counter++){
+                            //     pnt = results[counter]
+                            //     positions.add(new Graphic(new Point(pnt.get('X'), pnt.get('Y')), marker));
+                            // }
+                            // map.addLayer(positions)
+
+
+
+                            drawPath = function (src, des){
+                                srcCell = pointToCell(new Point(src.get('X'), src.get('Y')));
+                                desCell = pointToCell(new Point(des.get('X'), des.get('Y')));
+
+                                if (srcCell != desCell){
+                                    path = finder.findPath(srcCell.x, srcCell.y, desCell.x, desCell.y, g.clone());
+                                    if (path.length > 0){
+                                        path.forEach(function(index){
+                                            cells[index[1]][index[0]].setSymbol(pathSymbol)
+                                        })
+                                        smoothPath = PF.Util.smoothenPath(g.clone(), path);
+                                        points = [new Point(src.get('X'), src.get('Y'), new SpatialReference({ wkid : 32637}))];
+                                        smoothPath.forEach(function(index){
+                                            points.push(cellToPoint(index))
+                                        })
+                                        points[points.length-1] = [new Point(des.get('X'), des.get('Y'), new SpatialReference({ wkid : 32637}))];
+                                        polyline = new Polyline()
+                                        polyline.addPath(points);
+                                        graphic = new Graphic(polyline, lineSymbol)
+                                        linesLayer.add(graphic);
+                                    }
+                                }
+                                src = des;
+                                des = results.pop()
+                                if (des)
+                                    setTimeout(function (){
+                                        drawPath(src, des);
+                                    }, 20)
+                            }
+                            if (results.length >= 2){
+                                src = results.pop()
+                                des = results.pop()
+                                drawPath(src, des)
+                            }
+                        }
+                    })
+                };
+                start()
+            });
+    </script>
+  </head>
+  <body>
+    <div id="map">
+    </div>
+    <div id="controls">
+        <input type='button' value='Show Grid' onclick="map.addLayer(gridLayer)" />
+        <input type='button' value='Hide Grid' onclick="map.removeLayer(gridLayer)" />
+        <input type='button' value='Remove Path Cells' onclick="reColorGrid()" />
+    </div>
+
+  </body>
+</html>
+
