@@ -19,12 +19,12 @@
       }
     </style>
 
-    <script src="js/pathfinding-browser.js"></script>
+    <script src="../js/pathfinding-browser.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.6.14.min.js"></script>
     <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
     <script src="https://js.arcgis.com/3.15/"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="routing_with_path_finding_js/walls_matrix.json"></script>
+    <script src="walls_matrix.json"></script>
     
     
 
@@ -72,6 +72,15 @@
             y = index[1] * step + step/2 + sp.YMin
             return new Point(x,y, new SpatialReference({ wkid : 32637}));
         }  
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
                 
         require(["esri/map", 
@@ -185,6 +194,17 @@
                     // Load walls matrix
                 }
                 drawGrid();
+                ids = ["389fdb2d-e7b0-4b44-8af0-712ad615c795",
+                            "924d7829-1a3f-484c-b35a-2b7f079b2278",
+                            "34bfd1e1-26cb-41b1-9b63-9b808e444c03",
+                            "242be064-d8e6-41a7-81c0-2f05ef8400a3",
+                            "149d6379-1d61-4ba7-9ed2-dec37b3550ac",
+                            "c95c685c-b994-450c-894c-5594c30e3c27",
+                            "f4c9f2a0-2924-4b4d-80a2-ab6e61cb86cf",
+                            "bd5f2c50-da68-4ecd-977a-c310278a40a0"];
+
+                var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f', '#cab2d6', '#ffff99', '#1f78b4', '#33a02c', '#e31a1c', '#ff7f00', '#6a3d9a', '#b15928'].reverse();
+
 
                 start = function (){
                     var g = new PF.Grid(wallsMatrix[0].length, wallsMatrix.length,wallsMatrix);
@@ -193,16 +213,20 @@
                         dontCrossCorners: true
                     });
 
-                    var Positions = Parse.Object.extend("PositionsTrajectories");
+                    var Positions = Parse.Object.extend("Positions");
                     var query = new Parse.Query(Positions);
-                    //query.equalTo("installation_id", installation_ids[currentId])
+                    query.equalTo("installation_id", ids.pop())
+
+                    lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                            new Color(colors.pop()), 0.6);
+
                     query.containedIn("type", ["point", "point-same"])
                     query.descending("timeStamp");
                     query._limit = 1000;
                     query.find({
                         success: function(results) {
                             console.log(`results:${results.length}`);
-                            linesLayer.clear()
+                            //linesLayer.clear()
                             map.addLayer(linesLayer);
                             
                             // positions = new GraphicsLayer();
@@ -240,10 +264,13 @@
                                 }
                                 src = des;
                                 des = results.pop()
-                                if (des)
+                                if (des){
                                     setTimeout(function (){
                                         drawPath(src, des);
-                                    }, 20)
+                                    }, 0)
+                                }else if (ids.length > 0){
+                                    start() 
+                                }
                             }
                             if (results.length >= 2){
                                 src = results.pop()
