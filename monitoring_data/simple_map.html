@@ -90,7 +90,7 @@
                     p = new Point(beacons[region].x, beacons[region].y, sp);
                     floor = beacons[region].floor
                     var layer = floor == 0 ? gf : ff
-                    var marker = new PictureMarkerSymbol("/img/active-" + floor + ".gif", 16, 16);
+                    var marker = new PictureMarkerSymbol("img/active-" + floor + ".gif", 16, 16);
                     g = new Graphic(p, marker)
                     layer.add(g)
                     g.hide()
@@ -100,8 +100,8 @@
               
 
                 
-                marker = new PictureMarkerSymbol("/img/current.png", 16, 16);
-                marker2 = new PictureMarkerSymbol("/img/current2.png", 16, 16);
+                marker = new PictureMarkerSymbol("img/current.png", 16, 16);
+                marker2 = new PictureMarkerSymbol("img/current2.png", 16, 16);
                 gl = new GraphicsLayer();
                 current_pos = new Graphic(null, marker)
                 calculated_pos = new Graphic(null, marker2)
