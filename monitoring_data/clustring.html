@@ -19,6 +19,7 @@
 
     <!-- Beacons confiuration -->
     <script src="beacons.json"></script>
+    <script src="clustring_data.json"></script>
 
     <script>
          // Esri API
@@ -95,6 +96,9 @@
                 bt = new GraphicsLayer();
                 map.addLayer(bt)
 
+                var isUsedMarker = new PictureMarkerSymbol("img/active-0.gif", 16, 16);
+                var isEliminatedMarker = new PictureMarkerSymbol("img/active-1.gif", 16, 16);
+
                 regions.forEach(function (region){
                     p = new Point(beacons[region].x, beacons[region].y, sp);
                     floor = beacons[region].floor
@@ -109,7 +113,7 @@
                     var marker = new TextSymbol(beacons[region].minor);
                     t = new Graphic(p, marker)
                     bt.add(t)
-                    t.hide
+                    t.hide()
                     beacons[region].t = t
                 })
 
@@ -124,6 +128,36 @@
                 gl.add(current_pos);
                 gl.add(calculated_pos)
                 map.addLayer(gl)
+
+                window.n = -1
+                window.showClustring = function (step){
+                    regions.forEach(function (region){
+                        beacons[region].g.hide()
+                    });
+                    ids = Object.keys(clustringData)
+                    id = ids[step]
+                    used = clustringData[id].used
+                    eliminated = clustringData[id].eliminated
+                    used.forEach(function (minor){
+                        region = "r_1_" + minor
+                        if (beacons[region]){
+                            beacons[region].g.show()
+                            beacons[region].g.setSymbol(isUsedMarker)
+                        }
+                    })
+
+                    eliminated.forEach(function (minor){
+                        region = "r_1_" + minor
+                        if (beacons[region]){
+                            beacons[region].g.show()
+                            beacons[region].g.setSymbol(isEliminatedMarker)
+                        }
+                        
+                    })
+
+                }
+                
+
 
                 visualize = function (data){
                     console.log('visualizeing' + data.id)
@@ -209,14 +243,14 @@
                                 }
                             }
                             //loop();
-                            visualize(results[results.length-1])
+                            //visualize(results[results.length-1])
                             
                         }
                     });
                 }
 
                 $(document).ready(function (){
-                    run();
+                    // run();
                 });                
             });
     </script>
@@ -238,6 +272,8 @@
     <label>Experimant Name</label>
     <input type="text" id="experiment_name" value="exp_10"></input>
     <button onclick="run()">Run</button>
+    <button onclick="showClustring(++n)">Next</button>
+    <button onclick="showClustring(--n)">Previous</button>
 
     <progress id="seekbar" value="0" max="1" 
                 style=" position: absolute;
@@ -252,18 +288,13 @@
                         right: 20px;">
 
                         <img src="img/active-0.gif" width="16" heigth="16"/>
-                        Ground Floor Beacon
+                        Beacon Included
                         <br>
                         <img src="img/active-1.gif" width="16" heigth="16"/>
-                        First Floor Beacon
+                        Beacon Filtered
 
                         <br>
-                        <img src="img/current.png" width="16" heigth="16"/>
-                        Reported Position (Navibees)
-
-                        <br>
-                        <img src="img/current2.png" width="16" heigth="16"/>
-                        Calculated Positon (Centroid)
+                        
 
     </div>    
 
