@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
+     >
+
+
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="@string/app_name"
+        android:textSize="@dimen/abc_text_size_title_material_toolbar"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/floorsSelectionContainer"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/moreActions"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/com_navibees_sdk_floor_btn"
+            />
+        <TextView
+            android:id="@+id/floorName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ض"
+            android:textSize="25dp"
+            android:textColor="#ff1616ff"
+            android:typeface="sans"
+            android:gravity="center|left"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/moreActions"
+        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_alignParentLeft="true"
+        android:scaleType="center"
+        android:src="@drawable/com_navibees_sdk_menu_btn"
+        />
+
+
+
+</RelativeLayout>

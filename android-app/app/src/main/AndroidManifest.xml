@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.navibees.sampleapp">
+
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"
+        tools:replace="android:name" />
+
+    <uses-permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        tools:replace="android:name" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".SampleApplicationApp"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="pey8pjhhotyDIusYHgSEF6SUI84ugMPVe6rqF2Ah" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="ZD6C8F4bhChdi0FiotmdbWjNDIvmlL5hbtVfHvsx" />
+
+        <activity
+            android:name=".MapActivitySubClass"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".RouteToSubActivity"
+            android:label="@string/menu_activities" />
+        <activity
+            android:name=".AgendaSubActivity"
+            android:label="@string/menu_activities" />
+        <activity
+            android:name=".SettingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/menu_settings" />
+
+        <receiver
+            android:name=".CustomMonitoringReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.navibees.monitored.region.action" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Here we use the Default Receiver to Receive Push Notification , if you want custom receiver look at Dar Arl-Hekma in Projects Repo -->
+
+        <receiver
+            android:name="com.navibees.sdk.CustomPushBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Do not use this receiver use it as it is in all other appps , we removed it from SDK so we have to define it in Apps -->
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".com.navibees.sampleapp.tracking.SampleBootReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="50391b016aa98e181fa9459e7c08b4f7a4d816d4" />
+
+        <service
+            android:name=".com.navibees.sampleapp.tracking.Service_class"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".com.navibees.sampleapp.tracking.Main2Activity" class="Main2Activity" >
+
+        </activity>
+
+        <activity android:name=".Main3Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

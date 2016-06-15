@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NaviBees</string>
+    <string name="floor_label_floors_horizontal_listView">الطابق</string>
+    <string name="title_activity_pois_list">الإتجاه إلى...</string>
+    <string name="routing_to_floor">الي الطابق</string>
+    <string name="routing_from_floor">من الطابق</string>
+    <string name="title_activity_pois_category_filter">تنقية الخريطة</string>
+    <string name="poi_not_in_my_current_location_floor_no_portal">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_not_in_my_current_loaction_floor_no_entry_point_exist_for_poi">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_not_in_my_current_loaction_floor_no_entry_point_exist_for_portal">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_not_in_my_current_loaction_floor_no_portal">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_no_entry_point">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="hello_world">تيست</string>
+    <string name="poi_not_in_my_current_location_floor_no_portal_connecting_between">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_no_floor">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="poi_not_in_my_current_loaction_floor_no_portal_in_current_floor">تعذر الوصول إلى النقطه المطلوبه</string>
+    <string name="progress_bar_message">تحميل ...</string>
+    <string name="progress_bar_init_message">التهيئة...</string>
+
+    <string name="show_internet_settings_dialog_negative_button">غير موافق</string>
+    <string name="show_internet_settings_dialog_positive_button">موافق</string>
+    <string name="show_internet_settings_dialog_title">اعدادت الانترنت</string>
+    <string name="show_bluetooth_settings_dialog_message">يجب تفعيل البلوتوث</string>
+    <string name="show_bluetooth_settings_dialog_title">اعدادات البلوتوث</string>
+    <string name="menu_about">عن البرنامج</string>
+    <string name="menu_activities">الأجندة</string>
+    <string name="menu_map_filter">تنقية الخريطة</string>
+    <string name="menu_floor_selection">الطوابق</string>
+    <string name="copyright">Copyright © 2015 NaviBees. \n All rights reserved.</string>
+    <string name="title_activity_about">عن البرنامج</string>
+    <string name="title_activity_activities">الأجندة</string>
+
+    <string name="all_tab_title">الكل</string>
+    <string name="current_tab_title">الحالي</string>
+    <string name="request_location_permission_title">هذا التطبيق يحتاج لقراءة الموقع</string>
+    <string name="request_location_permission_message">لأن قراءة الموقع غير متاحة، لن يستطيع التطبيق إظهار موقعك على الخريطة.</string>
+    <string name="location_permission_denied_message">قراءة الموقع رفضت، سيظل التطبيق يعمل لكن بدون إظهار موقعك على الخريطة.</string>
+    <string name="enable_bluetooth_dialog_message">هذا التطبيق يحتاج إلى تفعيل البلوتوث، موافق؟</string>
+    <string name="enable_bluetooth_dialog_title">استخدام البلوتوث؟</string>
+
+    <string name="search_query_hint">ابحث</string>
+    <string name="routing_progress_dialog_message">بحث عن طريق...</string>
+    <string name="turn_by_turn_message_arrive">لقد وصلت</string>
+    <string name="turn_by_turn_message_turn_left">يساراً</string>
+    <string name="turn_by_turn_message_turn_right">يميناً</string>
+    <string name="turn_by_turn_message_go_straight">اذهب للامام</string>
+    <string name="turn_by_turn_message_distance_to_destination">أنت على بعد %1$d متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_go_to_floor">اذهب الي طابق </string>
+    <string name="turn_by_turn_message_distance_to_portal">%1$s على بعد %2$d متراً، استخدمه للذهاب الى الطابق %3$s</string>
+    <string name="turn_by_turn_message_gentle">قليلا</string>
+    <string name="turn_by_turn_message_sharp">بحده</string>
+
+
+    <string name="turn_by_turn_message_compltete_turn">انعطف %1$s %2$s بعد %3$d متراً</string>
+
+
+    <!-- TTS  turn_right-->
+    <string name="turn_by_turn_message_compltete_turn_right_0">انعطف يميناً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_right_1">انعطف يميناً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_right_2">انعطف يميناً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_right_3">انعطف يميناً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_right_4">انعطف يميناً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_right_5">انعطف يميناً بعد ٥ متراً</string>
+
+    <!-- TTS  turn_gentle_right-->
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_0">انعطف قليلا يميناً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_1">انعطف قليلا يميناً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_2">انعطف قليلا يميناً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_3">انعطف قليلا يميناً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_4">انعطف قليلا يميناً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_right_5">انعطف قليلا يميناً بعد ٥ متراً</string>
+
+    <!-- TTS  turn_sharp_right-->
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_0">انعطف بحده يميناً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_1">انعطف بحده يميناً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_2">انعطف بحده يميناً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_3">انعطف بحده يميناً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_4">انعطف بحده يميناً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_right_5">انعطف بحده يميناً بعد ٥ متراً</string>
+
+    <!-- TTS  turn_left-->
+    <string name="turn_by_turn_message_compltete_turn_left_0">انعطف يساراً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_left_1">انعطف يساراً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_left_2">انعطف يساراً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_left_3">انعطف يساراً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_left_4">انعطف يساراً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_left_5">انعطف يساراً بعد ٥ متراً</string>
+
+    <!-- TTS  turn_gentle_left-->
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_0">انعطف قليلا يساراً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_1">انعطف قليلا يساراً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_2">انعطف قليلا يساراً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_3">انعطف قليلا يساراً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_4">انعطف قليلا يساراً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_gentle_left_5">انعطف قليلا يساراً بعد ٥ متراً</string>
+
+    <!-- TTS  turn_sharp_left-->
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_0">انعطف بحده يساراً بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_1">انعطف بحده يساراً بعد ١ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_2">انعطف بحده يساراً بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_3">انعطف بحده يساراً بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_4">انعطف بحده يساراً بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_compltete_turn_sharp_left_5">انعطف بحده يساراً بعد ٥ متراً</string>
+
+    <!-- TTS  distance_to_destination-->
+    <string name="turn_by_turn_message_distance_to_destination_0">أنت على بعد ٠ متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_distance_to_destination_1">أنت على بعد ١ متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_distance_to_destination_2">أنت على بعد ٢ متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_distance_to_destination_3">أنت على بعد ٣ متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_distance_to_destination_4">أنت على بعد ٤ متراً من نقطة الوصول</string>
+    <string name="turn_by_turn_message_distance_to_destination_5">أنت على بعد ٥ متراً من نقطة الوصول</string>
+
+    <!-- TTS Portals -->
+    <!-- Stairs -->
+    <string name="turn_by_turn_message_distance_to_stairs_prefix">السلم على بعد</string>
+    <string name="turn_by_turn_message_distance_to_stairs_0">السلم على بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_distance_to_stairs_1">السلم على بعد ١ متراً</string>
+    <string name="turn_by_turn_message_distance_to_stairs_2">السلم على بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_distance_to_stairs_3">السلم على بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_distance_to_stairs_4">السلم على بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_distance_to_stairs_5">السلم على بعد ٥ متراً</string>
+
+
+    <!-- Elevator -->
+    <string name="turn_by_turn_message_distance_to_elevator_prefix">المصعد على بعد </string>
+    <string name="turn_by_turn_message_distance_to_elevator_0">المصعد على بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_distance_to_elevator_1">المصعد على بعد ١ متراً</string>
+    <string name="turn_by_turn_message_distance_to_elevator_2">المصعد على بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_distance_to_elevator_3">المصعد على بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_distance_to_elevator_4">المصعد على بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_distance_to_elevator_5">المصعد على بعد ٥ متراً</string>
+
+
+    <!-- Elevator -->
+    <string name="turn_by_turn_message_distance_to_escalator_prefix">السلم المتحرك على بعد</string>
+    <string name="turn_by_turn_message_distance_to_escalator_0">السلم المتحرك على بعد ٠ متراً</string>
+    <string name="turn_by_turn_message_distance_to_escalator_1">السلم المتحرك على بعد ١ متراً</string>
+    <string name="turn_by_turn_message_distance_to_escalator_2">السلم المتحرك على بعد ٢ متراً</string>
+    <string name="turn_by_turn_message_distance_to_escalator_3">السلم المتحرك على بعد ٣ متراً</string>
+    <string name="turn_by_turn_message_distance_to_escalator_4">السلم المتحرك على بعد ٤ متراً</string>
+    <string name="turn_by_turn_message_distance_to_escalator_5">السلم المتحرك على بعد ٥ متراً</string>
+    <string name="show_internet_settings_dialog_message">لا يوجد اتصال حالى بالانترنت, هل تريد تشغيل الانترنت</string>
+
+</resources>

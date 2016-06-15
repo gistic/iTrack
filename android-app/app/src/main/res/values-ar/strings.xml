@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">NaviBees-Sample</string>
+    <string name="title_activity_route_to_sub_class">RouteToSubActivity</string>
+    <string name="menu_settings">الإعدادات</string>
+
+    <string name="preference_category_portal_title">الوسائل المفضلة</string>
+    <string name="preference_category_portal_summary">فعّل الوسائل المفضلة اليك للتنقل بين الادوار</string>
+    <string name="preference_portal_elevator_title">المصعد</string>
+    <string name="preference_portal_escalator_title">السلم المتحرك</string>
+    <string name="preference_portal_stair_title">السلم</string>
+    <string name="action_settings">الاعدادات</string>
+
+</resources>

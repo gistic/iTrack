@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.navibees.sdk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.navibees.sdk.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.navibees.sdk.permission.C2D_MESSAGE" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <application
+        android:name=".NaviBeesApplication"
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <!-- Note:  the singleInstance below is important to keep two copies of your activity from getting launched on automatic startup -->
+        <activity
+            android:name=".activity.MapActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".activity.RouteToActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_pois_list"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".activity.POIsCategoriesFilterActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/menu_map_filter"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="@string/menu_about"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".activity.ActivitiesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/menu_activities"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name=".activity.NotificationHandlerActivity"
+            android:label="@string/title_activity_notification_handler"></activity>
+
+
+        <receiver
+            android:name=".model.postioning.MonitoringRegionsReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.navibees.monitored.region.action" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.parse.PushService" />
+
+    </application>
+
+</manifest>

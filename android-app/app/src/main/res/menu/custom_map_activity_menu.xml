@@ -1,0 +1,38 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.navibees.sampleapp.MapActivitySubClass">
+
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_map_filter"
+        android:title="@string/menu_map_filter"
+         />
+
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_activities"
+        android:title="@string/menu_activities"
+        />
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_about"
+        android:title="@string/menu_about"
+        />
+
+    <item
+        android:id="@+id/third_party_extra1_settings"
+        android:title="@string/menu_settings"
+        />
+
+
+    <item
+        android:id="@+id/third_party_extra2"
+        android:title="third party extra1"
+        />
+
+
+    <item
+        android:id="@+id/third_party_extra3"
+        android:title="third party extra2"
+        />
+</menu>

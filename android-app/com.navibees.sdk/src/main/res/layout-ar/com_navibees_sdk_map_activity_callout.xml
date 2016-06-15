@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="50dp"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+    >
+
+
+    <ImageView
+        android:id="@+id/callout_left_icon"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/com_navibees_sdk_callout_direction_btn"
+        android:layout_gravity="center" />
+
+    <!-- POI Name-->
+    <TextView
+        android:id="@+id/poi_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:text="@string/hello_world"
+        android:textColor="#ff2400ff"
+        android:textSize="15sp"
+        />
+
+    <!-- Rightend Arrow -->
+    <ImageView
+        android:id="@+id/callout_right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/com_navibees_sdk_callout_gray_arrow"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

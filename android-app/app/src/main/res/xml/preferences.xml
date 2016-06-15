@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory
+        android:title="@string/preference_category_portal_title"
+        android:summary="@string/preference_category_portal_summary">
+
+        <SwitchPreference
+            android:key="@string/com_navibees_sdk_preference_portal_elevator_key"
+            android:title="@string/preference_portal_elevator_title"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
+            android:key="@string/com_navibees_sdk_preference_portal_escalator_key"
+            android:title="@string/preference_portal_escalator_title"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
+            android:key="@string/com_navibees_sdk_preference_portal_stair_key"
+            android:title="@string/preference_portal_stair_title"
+            android:defaultValue="false"/>
+
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="@string/preference_category_tts_summary"
+        android:summary="@string/preference_category_portal_summary">
+
+        <SwitchPreference
+            android:key="@string/com_navibees_sdk_preference_user_enabled_tts_key"
+            android:title="@string/preference_tts_enabled_by_user"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

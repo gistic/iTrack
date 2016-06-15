@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NaviBees-Sample</string>
+    <string name="title_activity_route_to_sub_class">RouteToSubActivity</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="preference_category_portal_title">Preferred Portals</string>
+    <string name="preference_category_portal_summary">Enable/Disabled portals according to your preferences used in routing</string>
+    <string name="preference_portal_elevator_title">Elevator</string>
+    <string name="preference_portal_escalator_title">Escalator</string>
+    <string name="preference_portal_stair_title">Stair</string>
+    <string name="title_activity_setting">SettingActivity</string>
+
+    <string name="preference_category_tts_summary">Enable/Disabled TTS</string>
+    <string name="preference_tts_enabled_by_user">TTS Enabled</string>
+
+</resources>

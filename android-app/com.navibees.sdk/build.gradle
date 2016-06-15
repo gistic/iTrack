@@ -1,0 +1,151 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'maven'
+//apply plugin: 'maven-publish'
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    publishNonDefault true
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        project.version = android.defaultConfig.versionName
+    }
+
+    packagingOptions{
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+
+    buildTypes {
+        def BOOLEAN = "boolean"
+        def TRUE = "true"
+        def FALSE = "false"
+        def SHOW_RESTRICTIONS = "SHOW_RESTRICTIONS"
+        def SHOW_BEACONS = "SHOW_BEACONS"
+        def SHOW_LOGS = "SHOW_LOGS"
+        def SHOW_TOASTS = "SHOW_TOASTS"
+
+        release {
+            buildConfigField BOOLEAN, SHOW_RESTRICTIONS, FALSE;
+            buildConfigField BOOLEAN, SHOW_BEACONS, FALSE;
+            buildConfigField BOOLEAN, SHOW_LOGS, FALSE;
+            buildConfigField BOOLEAN, SHOW_TOASTS, FALSE;
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug{
+            buildConfigField BOOLEAN, SHOW_RESTRICTIONS, TRUE;
+            buildConfigField BOOLEAN, SHOW_BEACONS, TRUE;
+            buildConfigField BOOLEAN, SHOW_LOGS, TRUE;
+            buildConfigField BOOLEAN, SHOW_TOASTS, TRUE;
+        }
+
+        libraryVariants.all { variant ->
+            variant.outputs.each { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.aar')) {
+                    def fileName = outputFile.name.replace(".aar","-${version}.aar")
+                    output.outputFile = new File(outputFile.parent, fileName)
+                }
+            }
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+repositories {
+    jcenter()
+    // esri arcgis maven repo
+    maven {
+        url 'http://dl.bintray.com/esri/arcgis'
+    }
+
+    // for altbeacon
+    flatDir {
+        dirs 'libs'
+    }
+    //for GSON
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.esri.arcgis.android:arcgis-android:10.2.5'
+    compile 'org.altbeacon:android-beacon-library:2.3'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.facebook.fresco:fresco:0.3.0+'//Do not update this version because it will make problem with ARM 64 bit architecture becuase ESRI do not handle it correct
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:recyclerview-v7:23.1.0'
+    compile 'com.timehop.stickyheadersrecyclerview:library:0.4.2@aar'
+    compile 'com.google.android.gms:play-services-location:8.1.0'
+}
+
+/*
+android.libraryVariants
+publishing {
+
+
+    publications {
+        maven(MavenPublication) {
+            artifact bundleRelease
+
+        }
+    }
+
+
+    publications {
+        sdk(MavenPublication) {
+            artifactId 'navibees-android-sdk'
+            //artifact "${project.buildDir}/outputs/aar/${project.name}-${project.version}.aar"
+            artifact './build/outputs/aar/com.uqu.navibees.sdk-release.aar'
+            version '1.0'
+
+
+            //The publication doesn't know about our dependencies, so we have to manually add them to the pom
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+
+                //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
+                //http://stackoverflow.com/questions/24743562/gradle-not-including-dependencies-in-published-pom-xml
+                configurations.compile.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', it.group)
+                    dependencyNode.appendNode('artifactId', it.name)
+                    dependencyNode.appendNode('version', it.version)
+                }
+
+            }
+
+        }
+    }
+
+
+    repositories {
+        maven  {
+            name "myNexus"
+            url myNexusUrl
+            credentials {
+                username myNexusUsername
+                password myNexusPassword
+            }
+        }
+    }
+
+}
+
+*/

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.navibees.sdk</groupId>
+    <artifactId>com.navibees.sdk-release</artifactId>
+    <version>1.0</version>
+    <packaging>aar</packaging>
+    <description>POM was created from install:install-file</description>
+
+
+    <repositories>
+        <repository>
+            <id>bintray-repo-esri</id>
+            <url>https://esri.bintray.com/arcgis</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.esri.arcgis.android</groupId>
+            <artifactId>arcgis-android</artifactId>
+            <version>10.2.5</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.altbeacon</groupId>
+            <artifactId>android-beacon-library</artifactId>
+            <version>2.3</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.facebook.fresco</groupId>
+            <artifactId>fresco</artifactId>
+            <version>0.3.0+</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.parse.bolts</groupId>
+            <artifactId>bolts-android</artifactId>
+            <version>1.+</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.timehop.stickyheadersrecyclerview</groupId>
+            <artifactId>library</artifactId>
+            <version>0.4.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>design</artifactId>
+            <version>23.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>recyclerview-v7</artifactId>
+            <version>23.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>appcompat-v7</artifactId>
+            <version>23.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.android.gms</groupId>
+            <artifactId>play-services-location</artifactId>
+            <version>8.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

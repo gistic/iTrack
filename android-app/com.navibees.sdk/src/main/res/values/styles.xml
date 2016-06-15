@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/NaviBeesActionBar</item>
+    </style>
+
+
+    <!-- general styles for the action bar -->
+    <style name="NaviBeesActionBar"
+        parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@android:color/white</item>
+    </style>
+
+
+
+</resources>

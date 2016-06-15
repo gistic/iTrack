@@ -1,0 +1,180 @@
+com.navibees.sdk.ApplicationConstants:
+    public static final int REQUEST_CODE_DIRECTIONS
+    public static final int REQUEST_CODE_ACTIVITY
+    public static final int REQUEST_CODE_PERMISSION_COARSE_LOCATION
+    public static final int REQUEST_CODE_ENABLE_LOCATION
+    public static final int ACTIVITIES_FRAGMENT_ALL_INDEX
+    public static final int ACTIVITIES_FRAGMENT_CURRENT_INDEX
+    public static final java.lang.String SELECTED_POI_OR_FACILITY_KEY
+    public static final java.lang.String SELECTED_ACTIVITY_POI_ID
+    public static final java.lang.String MAP_RESOURCES_FOLDER
+    public static final java.lang.String MAP_RESOURCES_APP_CONFIGURATIONS
+    public static final java.lang.String MAP_RESOURCES_FOLDER_IMAGE
+    public static final java.lang.String MAP_RESOURCES_FOLDER_META_DATA
+    public static final java.lang.String MAP_RESOURCES_FOLDER_NETWORK_DATASETS
+    public static final java.lang.String MAP_RESOURCES_FOLDER_TILED_LAYERS
+    public static final java.lang.String MAP_RESOURCES_META_DATA_POIs_CATEGORIES
+    public static final java.lang.String MAP_RESOURCES_META_DATA_POIs
+    public static final java.lang.String MAP_RESOURCES_META_DATA_TAGs
+    public static final java.lang.String MAP_RESOURCES_META_DATA_FLOORs
+    public static final java.lang.String MAP_RESOURCES_META_DATA_PORTALs
+    public static final java.lang.String MAP_RESOURCES_META_DATA_RESTRICTIONs
+    public static final java.lang.String MAP_RESOURCES_META_DATA_MONITORED_REGIONS
+    public static final java.lang.String MAP_RESOURCES_META_DATA_FACILITIES
+    public static final java.lang.String MAP_RESOURCES_META_DATA_ACTVITIES
+    public static final java.lang.String MAP_RESOURCES_IMAGES_PATH_KEY
+    public static final java.lang.String MAP_RESOURCES_META_DATA_PATH_KEY
+    public static final java.lang.String MAP_RESOURCES_NETWORK_DATASETS_PATH_KEY
+    public static final java.lang.String MAP_RESOURCES_TILED_LAYER_PATH_KEY
+    public static final java.lang.String APP_CONFIGURATIONS_LAST_MODIFICATION_DATE_KEY
+    public static final java.lang.String BUILDING_META_DATA_LAST_MODIFICATION_DATE_KEY
+    public static final java.lang.String BEACONS_CONFIGURATIONS_LAST_MODIFICATION_DATE_KEY
+    public static final java.lang.String BACKGROUND_MONITORED_REGIONS_KEY
+    public static final java.lang.String MONITORED_REGION_ACTION
+    public static final java.lang.String MONITORED_REGION_ACTION_TYPE_KEY
+    public static final java.lang.String MONITORED_REGION_ACTION_TYPE_ENTER_VALUE
+    public static final java.lang.String MONITORED_REGION_ACTION_TYPE_EXIT_VALUE
+    public static final java.lang.String MONITORED_REGION_UNIQUE_IDENTIFIER_KEY
+    public static final java.lang.String IS_APP_IN_FOREGROUND_KEY
+    public static final java.lang.String MAP_RESOURCES_APP_VERSION_KEY
+    public static final java.lang.String ROUTE_TO_POI_SORT_TYPE_KEY
+    public static final java.lang.String ROUTE_TO_CATEGORY_SORT_TYPE_KEY
+    public static final java.lang.String ROUTE_TO_FACILITY_SORT_TYPE_KEY
+    6:6:public ApplicationConstants()
+com.navibees.sdk.BuildConfig
+com.navibees.sdk.CustomPushBroadcastReceiver:
+    private static final java.lang.String TAG
+    269:295:private android.graphics.Bitmap getLargeIcon(android.content.Context,java.lang.String)
+    300:300:private java.lang.Class getNotificationHanlderActivity()
+com.navibees.sdk.Manifest
+com.navibees.sdk.Manifest$permission
+com.navibees.sdk.NaviBeesApplication:
+    private static final java.lang.String TAG
+    private java.lang.String uuid
+    160:161:public void enableRegionBootstrap(org.altbeacon.beacon.Region)
+com.navibees.sdk.activity.ActivitiesActivity:
+    43:46:private void setupToolBar()
+com.navibees.sdk.activity.MapActivity:
+    static final java.lang.String TAG
+    private com.esri.core.map.Graphic currentLocationWithoutSmoothingGraphic
+    private static final int HIT_TOLERANCE
+    private static final int CHANGE_FLOOR_THRESHOLD
+    824:910:private void drawRestrictionsOfCurrentFloor()
+    989:1002:private void drawStopPointsOfRoute(com.esri.core.map.Graphic)
+com.navibees.sdk.activity.RouteToActivity:
+    static final java.lang.String TAG
+com.navibees.sdk.adapter.ActivitiesRecyclerAdapter:
+    public static final int GROUP_BY_CATEGORY
+    public static final int GROUP_BY_START_DATE
+    public static final int GROUP_BY_POI
+    76:78:public ActivitiesRecyclerAdapter(java.util.List,boolean,android.content.Context,int)
+com.navibees.sdk.adapter.POIExpandableListAdapter:
+    static final java.lang.String TAG
+com.navibees.sdk.fragment.ActivitiesPagerFragment:
+    46:48:private void setupToolBar(android.view.View)
+com.navibees.sdk.fragment.ActivityDescriptionFragment:
+    private static final java.lang.String ACTIVITY_DATA_KEY
+    99:101:private void setupToolbar(android.view.View,java.lang.String)
+com.navibees.sdk.model.metadata.BeaconNode:
+    private double meanEstimatedDistance
+    39:40:public void setMajor(int)
+    47:48:public void setMinor(int)
+    59:59:public int getTxPower()
+    63:64:public void setTxPower(int)
+    72:73:public void setStates(java.util.List)
+    76:76:public double getMeanRSSI()
+    80:81:public void setMeanRSSI(double)
+    84:84:public double getMeanAccuracy()
+    88:89:public void setMeanAccuracy(double)
+    92:92:public double getMeanEstimatedDistance()
+    96:97:public void setMeanEstimatedDistance(double)
+    125:135:public double meanAccuracy()
+    140:150:public double meanEstimatedDistance()
+com.navibees.sdk.model.metadata.BeaconNodeState:
+    24:24:double getAccuracy()
+    28:29:void setAccuracy(double)
+    32:32:java.util.Date getTimestamp()
+    36:37:void setTimestamp(java.util.Date)
+    40:40:int getRssi()
+    44:45:void setRssi(int)
+    48:48:double getEstimatedDistance()
+    52:53:void setEstimatedDistance(double)
+com.navibees.sdk.model.metadata.CircleIndoorLocationRestriction:
+    27:27:public boolean isInside(com.navibees.sdk.model.metadata.json.IndoorLocation)
+com.navibees.sdk.model.metadata.IndoorLocationRestriction:
+    public abstract boolean isInside(com.navibees.sdk.model.metadata.json.IndoorLocation)
+    19:19:public int getId()
+com.navibees.sdk.model.metadata.LineIndoorLocationRestriction:
+    43:43:public boolean isInside(com.navibees.sdk.model.metadata.json.IndoorLocation)
+com.navibees.sdk.model.metadata.LocalMetaData:
+    static final java.lang.String TAG
+com.navibees.sdk.model.metadata.MetaDataManager:
+    static final java.lang.String TAG
+com.navibees.sdk.model.metadata.NaviBeesBeacon:
+    private static final java.lang.String TAG
+    26:34:protected NaviBeesBeacon(org.altbeacon.beacon.Beacon)
+com.navibees.sdk.model.metadata.PointIndoorLocationRestriction:
+    25:25:public boolean isInside(com.navibees.sdk.model.metadata.json.IndoorLocation)
+    30:30:public com.navibees.sdk.model.metadata.json.IndoorLocation getPoint()
+com.navibees.sdk.model.metadata.PolygonIndoorLocationRestriction:
+    25:25:public boolean isInside(com.navibees.sdk.model.metadata.json.IndoorLocation)
+com.navibees.sdk.model.postioning.MonitoringRegionsReceiver:
+    static final java.lang.String TAG
+    private int notificationId
+com.navibees.sdk.model.postioning.NaviBeesBeaconManager:
+    static final java.lang.String TAG
+    static final long BATTERY_STATUS_THRESHOLD
+com.navibees.sdk.model.postioning.NaviBeesBeaconParser:
+    public static final java.lang.String TAG
+com.navibees.sdk.model.postioning.NaviBeesMath:
+    11:135:public NaviBeesMath()
+    49:51:private static double dotProduct(com.navibees.sdk.model.metadata.json.IndoorLocation,com.navibees.sdk.model.metadata.json.IndoorLocation)
+    96:97:private static double length2(com.navibees.sdk.model.metadata.json.IndoorLocation)
+    102:102:private static double length(double[])
+    108:108:private static double length(com.navibees.sdk.model.metadata.json.IndoorLocation)
+    308:308:public static boolean isInsideCircle(com.navibees.sdk.model.metadata.CircleIndoorLocationRestriction,com.navibees.sdk.model.metadata.json.IndoorLocation)
+    372:380:private double calculateAreaOfPolygon(com.navibees.sdk.model.metadata.json.IndoorLocation[])
+    386:386:private double calculateAreaOfPolygon(com.navibees.sdk.model.metadata.PolygonIndoorLocationRestriction)
+    416:425:public static boolean isInsidePolygon(com.navibees.sdk.model.metadata.PolygonIndoorLocationRestriction,com.navibees.sdk.model.metadata.json.IndoorLocation)
+com.navibees.sdk.model.postioning.PositionManager:
+    static final java.lang.String TAG
+    56:57:public void enableReportingLocation()
+com.navibees.sdk.model.postioning.SensorFusionManager:
+    private static final java.lang.String TAG
+com.navibees.sdk.model.postioning.WeightedCentroidPositionLocator:
+    static final java.lang.String TAG
+    static final int K
+    103:106:private double calculateWeight2(double)
+com.navibees.sdk.model.postioning.kalman.Matrix:
+    79:86:public static void copy_matrix(com.navibees.sdk.model.postioning.kalman.Matrix,com.navibees.sdk.model.postioning.kalman.Matrix)
+    90:98:void print_matrix()
+    184:191:static void transpose_matrix(com.navibees.sdk.model.postioning.kalman.Matrix,com.navibees.sdk.model.postioning.kalman.Matrix)
+    195:203:static boolean equal_matrix(com.navibees.sdk.model.postioning.kalman.Matrix,com.navibees.sdk.model.postioning.kalman.Matrix,double)
+com.navibees.sdk.model.routing.EsriRouting:
+    private static final java.lang.String TAG
+    456:474:private com.navibees.sdk.model.metadata.json.Portal getNearestPortal(com.navibees.sdk.model.metadata.json.IndoorLocation,java.util.List)
+com.navibees.sdk.model.routing.TurnByTurnNavigation:
+    private static final double THETA_EPSILON
+    private static final double DEF_EPSILON
+    private static final java.lang.String TAG
+    private static final double DETECT_TURN_THRESHOLD
+    private static final double DISTANCE_FROM_FINAL_THRESHOLD
+    329:384:private java.util.List getDirections(java.util.List)
+com.navibees.sdk.model.server.ParseServerManager:
+    static final java.lang.String TAG
+com.navibees.sdk.util.AssetsManager:
+    static final java.lang.String TAG
+com.navibees.sdk.util.CommonUtils:
+    static final java.lang.String TAG
+    49:49:public CommonUtils()
+    313:324:public static void dumpIntent(android.content.Intent)
+    329:338:public static android.graphics.Bitmap getBitmapFromURL(java.lang.String)
+    380:382:public static float getImageFactor(android.content.Context,float)
+com.navibees.sdk.util.Log:
+    9:9:public Log()
+    23:23:public static void v(java.lang.String,java.lang.String)
+    26:26:public static void w(java.lang.String,java.lang.String)
+com.navibees.sdk.util.Toast:
+    public static final int LENGTH_SHORT
+    public static final int LENGTH_LONG
+    11:11:public Toast()

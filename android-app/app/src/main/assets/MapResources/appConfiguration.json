@@ -1,0 +1,24 @@
+{
+	"defaultZoom": 500,
+	"minimumPOIVisiableZoomLevel": 500,
+	"nameAr": "وادي مكة",
+	"venueId": "2jCdNHdECJ",
+	"buildingId": "BUfb1YWDms",
+	"beaconsUUID": "D3ACCFE2-E95D-433C-BCF4-643BECC5D217",
+	"trackingEnabledByDefault": true,
+	"initialLocation": {
+		"x": 599469.7801497241,
+		"y": 2358373.5065434286,
+		"floor": 0
+	},
+	"name": "Wadi Makkah ESRI",
+	"projectId": "p6dMzjys22",
+	"applicationId": "ad9X6mgT1Q",
+	"mapProvider": 0,
+	"plan": {
+		"featureStr": 12754,
+		"startDate": 1460017662776,
+		"duration": 365
+	},
+	"accessToken": "6b47bbdd310e72c2a1ae3dfe5bc4954899d7c976f5712eb128ee82324e23a462"
+}

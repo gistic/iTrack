@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.navibees.sdk.activity.MapActivity">
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_map_filter"
+        android:title="@string/menu_map_filter"
+        />
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_activities"
+        android:title="@string/menu_activities"
+        />
+
+    <item
+        android:id="@+id/com_navibees_sdk_map_activity_menu_action_about"
+        android:title="@string/menu_about"
+        />
+
+</menu>
