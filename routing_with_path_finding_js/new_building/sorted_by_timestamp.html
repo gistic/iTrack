@@ -124,7 +124,7 @@
 
                 
                 lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-                            new Color([255,0,0, 0.25]), 2);
+                            new Color([255,0,0, 1]), 2);
 
                 walkableSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                             new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
@@ -254,11 +254,13 @@
                                     cells[index[1]][index[0]].setSymbol(pathSymbol)
                                 })
                                 smoothPath = PF.Util.smoothenPath(g.clone(), path);
-                                points = []//[new Point(src['X'], src['Y'], new SpatialReference({ wkid : 32637}))];
-                                smoothPath.forEach(function(index){
-                                    points.push(cellToPoint(index))
-                                })
-                                // points[points.length-1] = [new Point(des['X'], des['Y'], new SpatialReference({ wkid : 32637}))];
+                                points = [new Point(src['X'], src['Y'], new SpatialReference({ wkid : 32637}))];
+                                // points = [];
+                                for (var p =1; p<smoothPath.length; p++){
+                                    points.push(cellToPoint(smoothPath[p]))
+                                }
+                                
+                                 points[points.length-1] = new Point(des['X'], des['Y'], new SpatialReference({ wkid : 32637}));
                                 polyline = new Polyline()
                                 polyline.addPath(points);
                                 graphic = new Graphic(polyline, lineSymbol)
