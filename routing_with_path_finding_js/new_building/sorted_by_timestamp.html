@@ -46,8 +46,10 @@
         var blockedSymbol;
         var pathSymbol;
         var lineSymbol;
+        var truthSymbol;
         var gridLayer;
         var linesLayer;
+        var truthLayer;
 
         // Esri API
         var Map, Tiled, Point, SpatialReference, PictureMarkerSymbol, Graphic, GraphicsLayer, Circle, SimpleFillSymbol, Color, CartographicLineSymbol, SimpleLineSymbol, Polyline, Polygon, FeatureLayer, FeatureSet, HeatmapRenderer, Event;
@@ -121,10 +123,14 @@
                 map.setZoom(2)
                 gridLayer = new GraphicsLayer();
                 linesLayer = new GraphicsLayer();
+                truthLayer = new GraphicsLayer();
 
                 
                 lineSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-                            new Color([255,0,0, 1]), 2);
+                            new Color([255,0,0, 1]), 3);
+
+                truthSymbol = new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASH,
+                            new Color([0,0,255, 1]), 3);
 
                 walkableSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                             new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
@@ -137,7 +143,7 @@
 
                 pathSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
                         new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-                        new Color([255,0,0, 0.25]), 0.5),new Color([255,0,255,0.25])
+                        new Color([255,0,0, 1]), 0.5),new Color([255,0,0,0.90])
                       );
 
 
@@ -284,10 +290,61 @@
                         drawPath(src, des)
                     }
                 };
-                start()
-                
 
+                drawTruth = function (){
+                    truthData = [
+                        [599509.5815, 2358351.03],
+                        [599508.7084, 2358353.914],
+                        [599507.8617, 2358356.983],
+                        [599507.2002, 2358358.518],
+                        [599505.9302, 2358361.005],
+                        [599504.2369, 2358363.201],
+                        [599501.5117, 2358362.486],
+                        [599498.1515, 2358361.402],
+                        [599491.9338, 2358360.476],
+                        [599488.2296, 2358360.476],
+                        [599480.2622, 2358359.063],
+                        [599475.4468, 2358366.366],
+                        [599474.1504, 2358370.044],
+                        [599471.2135, 2358370.626],
+                        [599467.3505, 2358370.52],
+                        [599467.3768, 2358364.329],
+                        [599466.6624, 2358359.936],
+                        [599464.8632, 2358356.259],
+                        [599465.5929, 2358352.636],
+                        [599464.7462, 2358350.863],
+                        [599462.5502, 2358348.35],
+                        [599459.9308, 2358347.556],
+                        [599456.7764, 2358344.75],
+                        [599452.1991, 2358342.766],
+                        [599453.3632, 2358339.353],
+                        [599454.1305, 2358337.474],
+                        [599454.501 , 2358335.622],
+                        [599455.8768, 2358333.347],
+                        [599455.4005, 2358330.793],
+        
+                    ];
+
+
+                    points = [];
+                    truthData.forEach(function (point){
+                        points.push(new Point(point[0], point[1], new SpatialReference({ wkid : 32637})));
+                    })
+                    polyline = new Polyline()
+                    polyline.addPath(points);
+                    graphic = new Graphic(polyline, truthSymbol)
+                    truthLayer.add(graphic);
+                    map.addLayer(truthLayer)
+                
+                }
+
+                start();
+                drawTruth();
+                
             });
+
+
+            
     </script>
   </head>
   <body>
