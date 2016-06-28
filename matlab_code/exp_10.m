@@ -2,7 +2,7 @@ XMin= 599435.5810000002;
 YMin= 2358326.3035000004;
 XMax= 599518.2827000003;
 YMax= 2358386.9219000004;
-[I,map] = imread('map_no_routing.png','png');
+[I,map] = imread('map_GF.png','png');
 yImg = linspace(YMax, YMin, size(I, 1));
 xImg = linspace(XMin, XMax, size(I, 2));
 image(xImg, yImg, I, 'CDataMapping', 'scaled');
@@ -223,7 +223,8 @@ trajectory = [];
  for n=1:length(sampled)
      t=cell2mat(sampled(n));
      coverage = cell2mat(sampled(n,2));
-      coverage = transpose(intersect(coverage, beacons));
+     gf = beacons(find(beacons(:,4)==0),:)
+      coverage = transpose(intersect(coverage, gf));
 %       coverage = transpose(intersect (coverage,in_timestamps(:,2)))
      if size(coverage) > 0
 %           % Hierarchical filtering
@@ -301,7 +302,7 @@ y = trajectory(:,3);
 
 Y= dct(y);Y1=Y;Y1(11:end)=0;y1 = idct(Y1);
 X= dct(x);X1=X;X1(11:end)=0;x1 = idct(X1);
-plot(x1, y1,'r','LineWidth',2);
+plot(x, y,'r','LineWidth',2);
 
 
         
